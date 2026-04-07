@@ -121,6 +121,7 @@ kr/{법령명}/
 |--------|------|
 | [legalize-kr/legalize-kr](https://github.com/legalize-kr/legalize-kr) | 법령 데이터 (현재 저장소) |
 | [legalize-kr/legalize-pipeline](https://github.com/legalize-kr/legalize-pipeline) | 법령 수집/변환/검증 파이프라인 |
+| [legalize-kr/compiler](https://github.com/legalize-kr/compiler) | 법령 API 결과 → git 컴파일러 |
 | [legalize-kr/legalize-web](https://github.com/legalize-kr/legalize-web) | 웹사이트 ([legalize.kr](https://legalize.kr)) |
 
 ## 데이터 출처
