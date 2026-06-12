@@ -1,0 +1,14 @@
+{
+  "servers": {
+    "korean-law": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "korean-law-mcp"
+      ],
+      "env": {
+        "LAW_OC": "851007"
+      }
+    }
+  }
+}
