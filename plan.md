@@ -66,3 +66,38 @@
 * **도구 활용:** `korean-law-mcp`의 GitHub 소스코드에서 **`tools` 폴더** 안의 로직을 분석하면, 법령 데이터를 어떻게 구조화했는지 배울 수 있어 아주 좋은 학습 자료가 됩니다.
 
 **결론적으로**, 류 주무관님의 MCP 서버는 **'AI를 위한 법률 사전'**이며, 선생님은 이를 **'경량화 기술'**이라는 보자기(Edge AI)에 싸서 **'안드로이드 앱'**이라는 그릇에 담는 과정을 수행하시는 것입니다.
+
+가장 많이 쓰는 실행 명령은 아래 3개입니다.
+
+school 법령 DB 생성
+python.exe build_school_edge_db.py
+```powershell
+.\.venv\Scripts\python.exe .\scripts\build_school_edge_db.py
+Get-ChildItem .\build | Select-Object Name,Length,LastWriteTime
+실행 완료했습니다.
+
+실행한 파일
+
+build_school_edge_db.py
+결과
+
+laws: 298
+articles: 8791
+chunks: 11285
+생성된 산출물
+
+school_law.db
+school_laws.jsonl
+school_articles.jsonl
+school_chunks.jsonl
+
+```
+
+안드로이드 앱 assets로 모델/DB 복사
+python.exe stage_android_assets.py --model models/gguf/모델폴더/model-q4_k_m.gguf
+
+안드로이드 샘플 앱 빌드/설치
+cd llama.android
+.\gradlew.bat :app:installDebug
+
+참고로 실제 실행(런칭)은 보통 Android Studio에서 llama.android 폴더를 열어 Run 하는 방식이 가장 안정적입니다.
