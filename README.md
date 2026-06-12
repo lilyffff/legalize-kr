@@ -28,6 +28,40 @@ grep -r "개인정보" kr/
 git log --before="2025-01-01" -1 -- kr/민법/법률.md
 ```
 
+## School 데이터셋 Edge DB 구축
+
+`school` 폴더의 법령만 추출해 안드로이드용 SQLite/JSONL을 생성합니다.
+
+```powershell
+c:/Users/WJ/AppData/Roaming/uv/python/CPYTHON-3.12.13-WINDOWS-X86_64-NONE/python.exe scripts/build_school_edge_db.py
+```
+
+산출물:
+- `build/school_law.db`
+- `build/school_laws.jsonl`
+- `build/school_articles.jsonl`
+- `build/school_chunks.jsonl`
+
+상세 가이드: `docs/step1_preprocess_local_db.md`
+
+## 모델 경량화 (2단계)
+
+LLM 모델 선택, 4-bit 양자화, Android 포맷(GGUF/TFLite) 변환 가이드:
+- `docs/step2_model_quantization.md`
+
+## 안드로이드 엣지 런타임 (3단계)
+
+MediaPipe LLM Inference API / llama.cpp Android 설정 및 자산 반영 가이드:
+- `docs/step3_android_edge_runtime.md`
+
+## MCP 이식 + UI 오케스트레이션 (4-5단계)
+
+앱 내 로컬 DB 검색 도구, 질의 라우팅, 채팅 UI 연동 구현 가이드:
+- `docs/step4_5_mcp_ui.md`
+
+오프라인 동작 검증 테스트 플랜:
+- `docs/test_plan_android_offline.md`
+
 ## 구조
 
 ```
