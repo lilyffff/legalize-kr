@@ -101,3 +101,33 @@ cd llama.android
 .\gradlew.bat :app:installDebug
 
 참고로 실제 실행(런칭)은 보통 Android Studio에서 llama.android 폴더를 열어 Run 하는 방식이 가장 안정적입니다.
+
+좋아요. 지금은 모델을 Qwen2.5-0.5B-Instruct (Q4_K_M)로 고정해서, 생성부터 assets 반영까지 한 번에 가면 됩니다.
+
+아래 명령을 레포 루트에서 순서대로 실행하세요.
+중요: Android Studio가 열고 있는 동일 경로에서 실행해야 합니다.
+
+의존성 설치
+python.exe -m pip install -U huggingface_hub cmake
+
+모델 다운로드 + GGUF 변환 + 4bit 양자화
+python.exe quantize_to_gguf.py --model-id Qwen/Qwen2.5-0.5B-Instruct --quant-type Q4_K_M
+
+school 로컬 DB 생성
+python.exe build_school_edge_db.py
+
+안드로이드 assets 반영
+python.exe stage_android_assets.py --model models/gguf/Qwen__Qwen2.5-0.5B-Instruct/model-q4_k_m.gguf
+
+반영 확인 (선택)
+Get-ChildItem .\vendor\llama.cpp\examples\llama.android\app\src\main\assets\models
+Get-ChildItem .\vendor\llama.cpp\examples\llama.android\app\src\main\assets\db
+
+실행 후 Android Studio에서
+
+File > Sync Project with Gradle Files
+Build > Clean Project
+Build > Assemble Project
+Run app
+참고: 2번에서 C/C++ 컴파일러 오류가 나면 Visual Studio Build Tools의 Desktop development with C++ 설치 후 2번만 다시 실행하면 됩니다.
+////////////
